@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+        "-//Checkstyle//DTD Checkstyle Configuration 8.0//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+    <property name="charset" value="UTF-8"/>
+    <property name="severity" value="error"/>
+
+    <!-- Проверка длины строки -->
+    <module name="LineLength">
+        <property name="max" value="120"/>
+        <property name="fileExtensions" value="java"/>
+    </module>
+
+    <module name="TreeWalker">
+        <!-- Пробелы вокруг операторов -->
+        <module name="WhitespaceAround"/>
+
+        <!-- Именование -->
+        <module name="TypeNameCheck"/>
+        <module name="MethodNameCheck"/>
+        <module name="ConstantNameCheck"/>
+
+        <!-- Обязательные фигурные скобки -->
+        <module name="NeedBraces"/>
+
+        <!-- Неиспользуемые импорты -->
+        <module name="UnusedImports"/>
+    </module>
+</module>
