@@ -23,7 +23,7 @@ public class ImageController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/posts/{postId}/image")
     public List<Image> addPostImage(@PathVariable("postId") long postId,
-                                    @PathVariable("image")List<MultipartFile> files){
+                                    @PathVariable("image")List<MultipartFile> files) {
         return imageService.saveImages(postId, files);
     }
 

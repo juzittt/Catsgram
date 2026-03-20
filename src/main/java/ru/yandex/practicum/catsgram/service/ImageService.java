@@ -28,14 +28,14 @@ public class ImageService {
     private final Map<Long, Image> images = new HashMap<>();
     private final PostService postService;
 
-    public List<Image> getPostImages(Long postId){
+    public List<Image> getPostImages(Long postId) {
         return images.values()
                 .stream()
                 .filter(image -> image.getPostId() == postId)
                 .collect(Collectors.toList());
     }
 
-    private Path saveFile(MultipartFile file, Post post){
+    private Path saveFile(MultipartFile file, Post post) {
         try {
             // формирование уникального названия файла на основе текущего времени и расширения оригинального файла
             String uniqueFileName = String.format("%d.%s", Instant.now().toEpochMilli(),
@@ -45,14 +45,14 @@ public class ImageService {
             Path uploadPath = Paths.get(imageDirectory, String.valueOf(post.getAuthorId()), post.getId().toString());
             Path filePath = uploadPath.resolve(uniqueFileName);
 
-            if(!Files.exists(uploadPath)){
+            if (!Files.exists(uploadPath)) {
                 Files.createDirectories(uploadPath);
             }
 
             // сохраняем файл по сформированному пути
             file.transferTo(filePath);
             return filePath;
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

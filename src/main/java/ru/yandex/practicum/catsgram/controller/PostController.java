@@ -26,13 +26,14 @@ public class PostController {
     public Collection<Post> findAll(@RequestParam(defaultValue = "10") int size,
                                     @RequestParam(defaultValue = "0") int from,
                                     @RequestParam(defaultValue = "asc") String sort) {
-        if (size <= 0){
+        if (size <= 0) {
             throw new ParameterNotValidException("size", "Некорректный размер выборки. Размер должен быть больше нуля");
         }
-        if (from < 0){
-            throw new ParameterNotValidException("from", "Некорректный параметр from. Начало выборки должно быть положительным числом");
+        if (from < 0) {
+            throw new ParameterNotValidException("from", "Некорректный параметр from." +
+                    " Начало выборки должно быть положительным числом");
         }
-        if (!sort.equals("asc") && !sort.equals("desc")){
+        if (!sort.equals("asc") && !sort.equals("desc")) {
             throw new ParameterNotValidException("sort", "Получено: " + sort + " должно быть: ask или desc");
         }
         return postService.findAll(SortOrder.from(sort), from, size);

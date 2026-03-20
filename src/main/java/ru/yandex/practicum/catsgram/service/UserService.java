@@ -20,11 +20,11 @@ public class UserService {
     }
 
     public User createUser(User user) {
-        if (user.getEmail() == null || user.getEmail().isEmpty()){
+        if (user.getEmail() == null || user.getEmail().isEmpty()) {
             throw new ConditionsNotMetException("Имейл должен быть указан");
         }
-        for (User existingUser : users.values()){
-            if (existingUser.getEmail().equals(user.getEmail())){
+        for (User existingUser : users.values()) {
+            if (existingUser.getEmail().equals(user.getEmail())) {
                 throw new ConditionsNotMetException("Этот имейл уже используется");
             }
         }
@@ -37,7 +37,7 @@ public class UserService {
     }
 
     public User updateUser(User newUser) {
-        if (newUser.getId() == null){
+        if (newUser.getId() == null) {
             throw new ConditionsNotMetException("Id должен быть указан");
         }
 
