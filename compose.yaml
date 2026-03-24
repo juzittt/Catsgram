@@ -1,0 +1,24 @@
+# Описание сервисов, которые должны быть развернуты
+services:
+  # Описание контейнера db
+  db:
+    image: postgres:16.1
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./volumes/postgres:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=catsgram
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=12345
+    # Описание способа проверки работоспособности контейнера
+    healthcheck:
+      # Указываем какую команду надо выполнить внутри контейнера
+      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
+      # Через какое время после запуска начать проверку
+      timeout: 5s
+      # Интервал повтора проверки
+      interval: 5s
+      # кол-во попыток
+      retries: 10
