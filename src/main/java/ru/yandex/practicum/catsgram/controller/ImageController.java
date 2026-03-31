@@ -1,3 +1,4 @@
+// src/main/java/ru/yandex/practicum/catsgram/controller/ImageController.java
 package ru.yandex.practicum.catsgram.controller;
 
 import lombok.RequiredArgsConstructor;
@@ -20,10 +21,11 @@ public class ImageController {
         return imageService.getPostImages(postId);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/posts/{postId}/image")
-    public List<Image> addPostImage(@PathVariable("postId") long postId,
-                                    @PathVariable("image")List<MultipartFile> files) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<Image> addPostImage(
+            @PathVariable("postId") long postId,
+            @RequestParam("image") List<MultipartFile> files) {
         return imageService.saveImages(postId, files);
     }
 
