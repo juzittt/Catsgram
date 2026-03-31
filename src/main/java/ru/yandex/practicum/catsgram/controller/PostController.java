@@ -21,7 +21,6 @@ import java.util.Optional;
 @RequestMapping("/posts")
 public class PostController {
     private final PostService postService;
-    private final PostMapper postMapper;
 
     @GetMapping
     public Collection<PostDto> findAll(
