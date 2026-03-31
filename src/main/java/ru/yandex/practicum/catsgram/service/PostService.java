@@ -37,7 +37,7 @@ public class PostService {
         return Optional.ofNullable(posts.get(postId));
     }
 
-    public Post create(Post post) {
+   /* public Post create(Post post) {
         if (post.getDescription() == null || post.getDescription().isBlank()) {
             throw new ConditionsNotMetException("Описание не может быть пустым");
         }
@@ -51,7 +51,7 @@ public class PostService {
         post.setPostDate(Instant.now());
         posts.put(post.getId(), post);
         return post;
-    }
+    }*/
 
     public Post update(Post newPost) {
         if (newPost.getId() == null) {
